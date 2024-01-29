@@ -25,11 +25,11 @@ Para iniciar o projeto "Busca CEP", siga os seguintes passos:
 
 2. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências:
 
-    npm install
+        npm install
 
 3. Inicie o servidor de desenvolvimento com o comando:
 
-    npm run serve
+        npm run serve
 
 A aplicação estará disponível em [http://localhost:8080](http://localhost:8080) (ou em outra porta especificada no console).
 
