@@ -1,5 +1,16 @@
 <template>
 <body>
+    <header>
+        <a href="https://www.tradeupgroup.com" class="logo" target="_blanck">
+            <img href=""  src="../assets/TradeUp.svg" alt="Logo">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Contatos</a></li>
+                <li><a href="#">Sobre o sistema</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class='container'>
         <div class="modal">
             <div class="cardInner">
@@ -7,7 +18,7 @@
                 <div class="area-response">
                     <div class="areaInput">
                         <div>
-                            <input  class="inputContainer" type="text" v-model="cep" @input="onInput" placeholder="DIGITE O CEP" maxlength="9" minlength="9"/>
+                            <input  class="inputContainer" type="text" v-model="cep" @input="onInput" @click="clearData" placeholder="DIGITE O CEP" maxlength="9" minlength="9"/>
                             <span class="error-message" v-if="errorMensage">{{errorMensage}}</span>
                         </div>
                         <searchButton :isDisabled="isButtonDisabled" @click="action">
@@ -15,13 +26,15 @@
                         </searchButton>
                     </div>
                     <div v-if="address" class="data-style">
-                        <p>CEP:</p>
+                        <p class="info">CEP:</p>
                         <p class="return-data">{{ address.cep }}</p>
-                        <p>Rua:</p>
+                        <p class="info">Rua:</p>
                         <p class="return-data">{{ address.logradouro }}</p>
-                        <p>
+                        <p class="info">Bairro:</p>
                         <p class="return-data">{{ address.bairro }}</p>
+                        <p class="info">Cidade:</p>
                         <p class="return-data">{{ address.localidade }}</p>
+                        <p class="info">Estado</p>
                         <p class="return-data">{{ address.uf }}</p>
                     </div>
                 </div>
@@ -66,6 +79,11 @@
                 this.address = response
             }
         },
+          clearData() {
+            this.cep = '';
+            this.errorMensage = '';
+            this.address = null;
+        },
         applyCepMask() {
           this.cep = this.cep.replace(/\D/g, '');
           if (this.cep.length > 5) {
@@ -98,12 +116,41 @@
         height: 100%;
     }
 
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff; 
+        padding: 15px;
+    }
+
+    .logo img {
+        max-width: 100px;
+    }
+
+    .menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .menu li {
+        margin-right: 20px;
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: black; 
+        font-weight: bold;
+    }
+
     .container{
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
+        height: 94vh;
         padding: 10px;
     }
 
@@ -165,12 +212,20 @@
         width: 100%;
         display: flex;
         gap: 10px;
-        flex-direction: column;
-        text-align: center;   
+        flex-direction: column; 
+        text-align: center;  
+    }
+
+    .info{
+        display: flex;
+        text-align: center;
+        width: 90%;
+        justify-content: center;
+        font-family: "Orbitron", sans-serif;
     }
 
     .return-data{
-        border-radius: 10px;
+        border-radius: var(--border-radius);
         background-color: #e3edf7;
         padding: 16px 32px;
         border: none;
