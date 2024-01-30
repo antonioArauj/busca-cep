@@ -2,7 +2,7 @@
 <body>
     <header>
         <a href="https://www.tradeupgroup.com" class="logo" target="_blanck">
-            <img href=""  src="../assets/TradeUp.svg" alt="Logo">
+            <img src="../assets/TradeUp.svg" alt="Logo">
         </a>
         <nav class="menu">
             <ul>
@@ -18,7 +18,7 @@
                 <div class="area-response">
                     <div class="areaInput">
                         <div>
-                            <input  class="inputContainer" type="text" v-model="cep" @input="onInput" @click="clearData" placeholder="DIGITE O CEP" maxlength="9" minlength="9"/>
+                            <input  class="inputContainer" type="text" v-model="cep" @input="applyCepMask" @click="clearData" placeholder="DIGITE O CEP" maxlength="9" minlength="9"/>
                             <span class="error-message" v-if="errorMensage">{{errorMensage}}</span>
                         </div>
                         <searchButton :isDisabled="isButtonDisabled" @click="action">
@@ -81,8 +81,6 @@
         },
           clearData() {
             this.cep = '';
-            this.errorMensage = '';
-            this.address = null;
         },
         applyCepMask() {
           this.cep = this.cep.replace(/\D/g, '');
@@ -95,9 +93,6 @@
             setTimeout(() => {
                 this.errorMensage = "";
             }, 3000);
-       },
-       onInput() {
-        this.applyCepMask();
        }
       },
     };
@@ -209,7 +204,7 @@
     }
 
     .data-style{
-        width: 100%;
+        width: 90%;
         display: flex;
         gap: 10px;
         flex-direction: column; 
@@ -219,9 +214,15 @@
     .info{
         display: flex;
         text-align: center;
-        width: 90%;
+        width: 100%;
         justify-content: center;
         font-family: "Orbitron", sans-serif;
+    }
+
+    .address-style{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .return-data{
@@ -234,7 +235,7 @@
         font-weight: 600;
         color: black;
         transition: all 240ms ease-out;
-        width: 90%;
+        width: 100%;
     }
 
 
@@ -278,12 +279,6 @@
         border-radius: var(--border-radius);
         overflow: hidden;
         width: 500px;
-    }
-    .address-style{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
     }
  
     .inputContainer:before,
