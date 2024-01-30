@@ -6,8 +6,7 @@
         </a>
         <nav class="menu">
             <ul>
-                <li><a href="#">Contatos</a></li>
-                <li><a href="#">Sobre o sistema</a></li>
+                <li><a href="">Sobre o sistema</a></li>
             </ul>
         </nav>
     </header>
@@ -120,8 +119,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #ffffff; 
+        background-color:rgb(171, 180, 190); 
         padding: 15px;
+        font-family: "Arial", sans-serif;
     }
 
     .logo img {
@@ -298,14 +298,12 @@
         position: absolute;
     }
  
- .inputContainer:before {
-     box-shadow: var(--bottom-shadow);
+    .inputContainer:before {
+        box-shadow: var(--bottom-shadow);
     }
  
     .inputContainer:after {
         box-shadow: var(--top-shadow);
     }
-
-
 
 </style>
